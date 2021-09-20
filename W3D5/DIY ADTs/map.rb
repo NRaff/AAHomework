@@ -14,7 +14,7 @@ class Map
 
   # gets the value for key if it exists
   def get(key)
-
+    return @map[key_index(key)][1] if key?(key)
   end
 
   # delete a key value pair given a specific key

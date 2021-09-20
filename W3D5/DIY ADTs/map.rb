@@ -18,13 +18,15 @@ class Map
   end
 
   # delete a key value pair given a specific key
+  # will through if key doesn't exist
   def delete(key)
-
+    raise 'nothing to delete' unless key?(key)
+    @map.slice!(key_index(key))
   end
 
   # shows the whole map
   def show
-
+    p @map
   end
 
   # gets all of the keys in a flattened array

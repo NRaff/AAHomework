@@ -36,7 +36,8 @@ class Simon
   end
 
   def require_sequence
-    gets.chomp.split(' ')
+    guess = gets.chomp.split(' ')
+    @game_over = guess == @seq ? false : true
   end
 
   def add_random_color
@@ -50,7 +51,7 @@ class Simon
   end
 
   def game_over_message
-    p "Nice job! You failed on round #{@sequence_length}" if @game_over
+    print "Nice job! You failed on round #{@sequence_length}" if @game_over
   end
 
   def reset_game

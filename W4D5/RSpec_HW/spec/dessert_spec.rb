@@ -62,12 +62,9 @@ describe Dessert do
   end
 
   describe "#make_more" do
-    
-    # before(:each) {dessert.make_more}
     it "calls bake on the dessert's chef with the dessert passed in" do
-      allow(chef).to receive(:bake)  
-      # expect(:make_more).to call(:bake).with(self)
       expect(chef).to receive(:bake).with(dessert)
+      dessert.make_more
     end
   end
 end

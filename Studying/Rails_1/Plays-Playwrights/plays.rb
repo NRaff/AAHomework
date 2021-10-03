@@ -1,18 +1,28 @@
-require 'sqlite3'
-require 'singleton'
-
-class PlayDBConnection < SQLite3::Database
-  include Singleton
-
-  def initialize
-    super('plays.db')
-    self.type_translation = true
-    self.results_as_hash = true
-  end
-end
+require_relative 'plays_db_connect'
 
 class Play
   attr_accessor :id, :title, :year, :playwright_id
+  
+  def self.find_by_title(title)
+    data = PlayDBConnection.instance.execute(<<-SQL, title)
+      select *
+      from plays
+      where title = ?
+    SQL
+    data.map { |play| Play.new(play)}
+  end
+
+  def self.find_by_playwright(name)
+    data = PlayDBConnection.instance.execute(<<-SQL, name)
+      select plays.*
+      from plays
+      join playwrights
+      on plays.playwright_id = playwrights.id
+      where playwrights.name = ?
+    SQL
+
+    data.map { |play| Play.new(play) }
+  end
 
   def self.all
     data = PlayDBConnection.instance.execute("SELECT * FROM plays")

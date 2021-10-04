@@ -13,6 +13,7 @@ class ShortenedUrl < ApplicationRecord
   validates :long_url, presence: true
   validates :user_id, presence: true
   validates :short_url, uniqueness: true
+  validate :no_spamming
 
   # * Associations
   belongs_to :submitter,
@@ -41,14 +42,13 @@ class ShortenedUrl < ApplicationRecord
     source: :tag_topic
 
 
-  # * Class Methods
+  # * Instance Methods
   def num_clicks
     self.visits.count
   end
 
   def num_uniques
     self.visitors.count
-
   end
 
   def num_recent_uniques
@@ -74,5 +74,27 @@ class ShortenedUrl < ApplicationRecord
       sr = SecureRandom::urlsafe_base64
     end
     sr
+  end
+
+  private
+  def no_spamming
+    num_submissions = ShortenedUrl
+      .where("user_id = ?", user_id)
+      .where(created_at: 1.minutes.ago..Time.now)
+      .count
+    p num_submissions
+    # num_submissions = 
+    #   submitter
+    #   .joins(:submitted_urls)
+    #   .where(created_at: 1.minutes.ago..Time.now)
+    #   .select("COUNT(shortened_url.id) as num_submissions")
+    if num_submissions > 5
+      errors[:base] << "Can\'t submit more than 5 urls in a minute"
+      return self
+    end
+  end
+
+  def nonpremium_max
+    
   end
 end

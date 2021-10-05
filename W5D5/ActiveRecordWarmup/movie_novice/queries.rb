@@ -23,7 +23,7 @@
 
 def find_angelina
   #find Angelina Jolie by name in the actors table
-  Actor.where('name = ?', 'Angelina Jolie')
+  Actor.where('name = ?', 'Angelina Jolie').pluck(:id, :name)
 
 end
 

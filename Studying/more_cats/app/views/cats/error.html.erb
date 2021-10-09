@@ -1,0 +1,7 @@
+<% error = @spec_cat.errors.full_messages%>
+<div
+  style= "align: center; background-color: light-red;"
+>
+  <h1><%= error.first %></h1>
+  <a href=<%= edit_cat_url(@spec_cat) %>>Back to editing...</a>
+</div>

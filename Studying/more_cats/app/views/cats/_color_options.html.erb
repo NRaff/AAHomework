@@ -1,0 +1,6 @@
+<% placeholder = !cat_object.color ? 'selected' : '' %>
+<option value="default" disabled <%= placeholder %>>-- Please select a color --</option>
+<% cat_object.class::VALID_COLORS.each do |color| %>
+  debugger
+  <option value="<%= color %>" <% cat_object.color == color ? "selected" : "" %>><%=color%></option>
+<% end %>

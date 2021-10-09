@@ -12,7 +12,7 @@ class CatsController < ApplicationController
   def create
     @spec_cat = Cat.new(cat_params)
     if @spec_cat.save
-      redirect_to :show
+      redirect_to cat_url(@spec_cat)
     else
       render 'error', error: @spec_cat.errors.full_messages
     end
@@ -29,7 +29,12 @@ class CatsController < ApplicationController
   end
 
   def update
-
+    @spec_cat = get_cat
+    if @spec_cat.update(cat_params)
+      redirect_to cat_url(@spec_cat)
+    else
+      render 'error'
+    end
   end
 
   def destroy

@@ -1,0 +1,45 @@
+<a href=<%= cats_url %>>Back to all cats</a>
+<% cur_color = spec_cat.color %>
+<% cur_sex  = spec_cat.sex %>
+<form 
+  action=<%= cats_url(spec_cat) %> 
+  method='POST'
+  style="display: flex; flex-direction: column; max-width: 300px;"
+>
+  <label for="name">Name </label>
+  <input type="text" name="cat[name]" value=<%= spec_cat.name %>>
+  <br>
+  <label for="birth_date">Birthday</label>
+  <input type="date" name="cat[birth_date" value=<%= spec_cat.birth_date %>>
+  <div
+    style="display: flex; align-items: left; flex-direction: column"
+  >
+    <p><strong>Select Color</strong></p>
+    <div>
+      <label for="red">Red</label>
+      <input type="radio" name="cat[color]" id="red" value="Red" <%= cur_color == 'Red' ? 'checked' : '' %>>
+    </div>
+    <div>
+      <label for="green">Green</label>
+      <input type="radio" name="cat[color]" id="green" value="Green" <%= cur_color == 'Green' ? 'checked' : '' %>>
+    </div>
+    <div>
+      <label for="blue">Blue</label>
+      <input type="radio" name="cat[color]" id="blue" value="Blue" <%= cur_color == 'Blue' ? 'checked' : '' %>>
+    </div>
+  </div>
+  <p><strong>Select Sex</strong></p>
+  <div>
+    <label for="sex">Male</label>
+    <input type="radio" name="cat[sex]" id="M" value="M" <%= cur_sex == 'M' ? 'checked' : '' %>>
+  </div>
+  <div>
+    <label for="sex">Female</label>
+    <input type="radio" name="cat[sex]" id="F" value="F" <%= cur_sex == 'F' ? 'checked' : '' %>>
+  </div>
+  <br>
+  <strong><label for="description">Description</label></strong>
+  <textarea name="cat[description]" id="description" cols="30" rows="10"><%= spec_cat.description %></textarea>
+  <br>
+  <input type="submit" name="submit" id="submit">
+</form>

@@ -1,0 +1,21 @@
+<nav>
+  <a href=<%= new_cat_url %>>+ New Cat</a>
+</nav>
+<h1>All the cats!</h1>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Birthday</th>
+    <th>Age</th>
+    <th>Color</th>
+    <th>Sex</th>
+    <th>Description</th>
+    <th>Show</th>
+    <th>Edit</th>
+  </thead>
+  <tbody>
+    <% @cats.each do |cat| %>
+      <%= render 'cat_row', cat: cat %>
+    <% end%>
+  </tbody>
+</table>

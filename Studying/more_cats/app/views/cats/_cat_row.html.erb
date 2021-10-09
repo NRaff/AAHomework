@@ -1,0 +1,16 @@
+<tr>
+  <td><%= cat.name %></td>
+  <td><%= cat.birth_date %></td>
+  <td><%= cat.age %></td>
+  <td
+    style= "background-color: <%= cat.color %>;"
+  ><%= cat.color %></td>
+  <td><%= cat.sex %></td>
+  <td><%= cat.description %></td>
+  <td>
+    <a href=<%= cat_url(cat) %>>Show Cat</a>
+  </td>
+  <td>
+    <a href=<%= edit_cat_url(cat) %>>Edit Cat</a>
+  </td>
+</tr>

@@ -5,13 +5,17 @@
     <td><%= rent_request.start_date %></td>
     <td><%= rent_request.end_date %></td>
     <td><%= rent_request.status %></td>
-    <td>
-      <a href=<%= edit_cat_rental_request_url(rent_request) %>>
-        Update Request
-      </a>
-    </td>
+    
   </tr>
 <% end %>
+
+
+<%# this is broken right now %>
+<td><button>Approve Request</button></td>
+<td><a href=<%= approve_cat_rental_request_url(rent_request) %>>Approve?</a></td>
+<td><%= button_to 'Approve', action: approve_cat_rental_request_url(rent_request), method: :get%></td>
+<td><a href=<%= approve_cat_rental_request_url(rent_request) %>>Approve?</a></td>
+<td><a href=<%= edit_cat_rental_request_url(rent_request) %>>Edit</a></td>
 
 
 

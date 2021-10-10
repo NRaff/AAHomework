@@ -47,6 +47,24 @@ class CatRentalRequestsController < ApplicationController
     redirect_to cat_url(@rent_req.cat_id)
   end
 
+  def approve
+    @rent_req = get_rent_request
+    if @rent_req.approve!
+      redirect_to cat_url(@rent_req.cat_id)
+    else
+      render json: @rent_req.errors.full_messages
+    end
+  end
+
+  def deny
+    @rent_req = get_rent_request
+    if @rent_req.deny!
+      redirect_to cat_url(@rent_req.cat_id)
+    else
+      render json: @rent_req.errors.full_messages
+    end
+  end
+
   private
   def get_rent_request
     CatRentalRequest.find(params[:id])

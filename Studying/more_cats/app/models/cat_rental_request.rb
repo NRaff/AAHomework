@@ -22,14 +22,18 @@ class CatRentalRequest < ApplicationRecord
     dependent: :destroy
 
   def approve!
-    CatRentalRequest.transaction do 
-      self.overlapping_pending_requests
-      self.update(status: 'APPROVED')
-    end
+    approved = CatRentalRequest.transaction do 
+                  self.overlapping_pending_requests
+                  self.update(status: 'APPROVED')
+                end
+    return true if approved
+    false
   end
 
   def deny!
-    self.update(status: 'DENIED')
+    denied = self.update(status: 'DENIED')
+    return true if denied
+    false
   end
 
   def overlapping_pending_requests

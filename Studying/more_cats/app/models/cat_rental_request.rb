@@ -21,14 +21,28 @@ class CatRentalRequest < ApplicationRecord
     class_name: :Cat,
     dependent: :destroy
 
+  def approve!
+    CatRentalRequest.transaction do 
+      self.overlapping_pending_requests
+      self.update(status: 'APPROVED')
+    end
+  end
 
-  private
+  def deny!
+    self.update(status: 'DENIED')
+  end
+
+  def overlapping_pending_requests
+    self.overlapping_requests.each do |req|
+      req.update(status: 'DENIED')
+    end
+  end
+
   def overlapping_requests
     CatRentalRequest
       .where.not("end_date < ?", self.start_date)
       .or(CatRentalRequest.where.not("start_date > ?", self.end_date))
       .where(cat_id: self.cat_id)
-      .where(status: 'APPROVED')
       .where.not(id: self.id)
   end
 

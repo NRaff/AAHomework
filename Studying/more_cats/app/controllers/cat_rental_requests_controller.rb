@@ -16,6 +16,13 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def create
+    @rent_req = CatRentalRequest.new(rent_req_params)
+
+    if @rent_req.save
+      redirect_to cat_url(@rent_req.cat_id)
+    else
+      render json: @rent_req.errors.full_messages
+    end
 
   end
 
@@ -26,11 +33,18 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def update
-
+    @rent_req = get_rent_request
+    if @rent_req.update(rent_req_params)
+      redirect_to cat_url(@rent_req.cat_id)
+    else
+      render json: @rent_req.errors.full_messages
+    end
   end
 
   def destroy
-
+    @rent_req = get_rent_request
+    @rent_req.destroy
+    redirect_to cat_url(@rent_req.cat_id)
   end
 
   private
@@ -39,7 +53,7 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def rent_req_params
-    params.require(:rent_request).permit(:start_date, :end_date)
+    params.require(:rent_request).permit(:start_date, :end_date, :status, :cat_id)
   end
 
 end

@@ -6,9 +6,12 @@
     <td><%= rent_request.end_date %></td>
     <td><%= rent_request.status %></td>
     <td>
-      <a href=<%= edit_cat_rental_request_url(rent_request.cat.id) %>>
+      <a href=<%= edit_cat_rental_request_url(rent_request) %>>
         Update Request
       </a>
     </td>
   </tr>
 <% end %>
+
+
+

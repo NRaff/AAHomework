@@ -1,0 +1,14 @@
+
+<% rent_requests.each do |rent_request| %>
+  <tr>
+    <td><%= rent_request.cat.name %></td>
+    <td><%= rent_request.start_date %></td>
+    <td><%= rent_request.end_date %></td>
+    <td><%= rent_request.status %></td>
+    <td>
+      <a href=<%= edit_cat_rental_request_url(rent_request.cat.id) %>>
+        Update Request
+      </a>
+    </td>
+  </tr>
+<% end %>

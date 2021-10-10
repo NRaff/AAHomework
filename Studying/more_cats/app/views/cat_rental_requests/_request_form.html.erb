@@ -1,0 +1,24 @@
+<% method = '' %>
+<% if action == :new %>
+  <% action = cat_rental_requests_url   %>
+<% else %>
+  <% action = cat_rental_request_url(rent_req) %>
+  <% method = "<input type='hidden' name='_method' value='PATCH'>" %>
+<% end %>
+<form 
+  action=<%= action %>
+  style="display: flex; flex-direction: column;"
+>
+  <%= method.html_safe %>
+  <label for="cats_select">Choose cat</label>
+  <%= render 'cats_select', selected_cat: rent_req.cat %>
+  <br>
+  <label for="start_date">Select start</label>
+  <input type="date", name="rent_request[start_date]">
+  <br>
+  <label for="end_date">Select end</label>
+  <input type="date", name="rent_request[end_date]">
+  <br>
+  <input type="submit" name="submit" id="submit">
+
+</form>

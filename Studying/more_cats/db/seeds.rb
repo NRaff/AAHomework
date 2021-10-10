@@ -13,3 +13,13 @@ Cat.create([
   {birth_date: "2018/01/20", color: "Red", name: "Mike", sex: "F", description: "I'm the color red!"},
   {birth_date: "2019/01/20", color: "Blue", name: "Charis", sex: "M", description: "Meowtime"}
 ])
+
+CatRentalRequest.create([
+  {cat_id: 1, start_date: '1/1/2021', end_date: '1/7/2021'},
+  {cat_id: 2, start_date: '1/1/2021', end_date: '1/7/2021', status: 'APPROVED'},
+  {cat_id: 3, start_date: '1/1/2021', end_date: '1/7/2021', status: 'DENIED'},
+  {cat_id: 4, start_date: '1/1/2021', end_date: '1/7/2021', status: 'DENIED'},
+  {cat_id: 2, start_date: '1/4/2021', end_date: '3/7/2021'},
+  {cat_id: 3, start_date: '12/1/2021', end_date: '12/7/2021', status: 'APPROVED'},
+  {cat_id: 2, start_date: '7/1/2021', end_date: '7/7/2021'}
+])

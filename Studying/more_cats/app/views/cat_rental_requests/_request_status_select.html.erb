@@ -1,0 +1,6 @@
+<select name="rent_request[status]" id="status">
+  <% Cat.all.each do |cat|%>
+    <% selected = cat.id == selected_cat.id ? 'selected' : ''%>
+    <option value=<%= cat.id %> <%= selected %>> <%= cat.name %></option>
+  <% end %>
+</select>

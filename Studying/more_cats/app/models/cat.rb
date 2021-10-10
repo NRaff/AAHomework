@@ -26,4 +26,9 @@ class Cat < ApplicationRecord
     time_ago_in_words(self.birth_date).capitalize
   end
 
+  has_many :rental_requests,
+    foreign_key: :cat_id,
+    class_name: :CatRentalRequest,
+    dependent: :destroy
+
 end

@@ -1,6 +1,11 @@
 <select name="rent_request[cat_id]" id="cat_select">
+  <option value="na" disabled <%= selected_cat ? '' : 'selected' %>>-- Select a cat --</option>
   <% Cat.all.each do |cat|%>
-    <% selected = cat.id == selected_cat.id ? 'selected' : ''%>
+    <% if selected_cat %>
+        <% selected = cat.id == selected_cat.id ? 'selected' : ''%>
+    <% else %>
+        <% selected = ''%>
+    <% end %>
     <option value=<%= cat.id %> <%= selected %>> <%= cat.name %></option>
   <% end %>
 </select>

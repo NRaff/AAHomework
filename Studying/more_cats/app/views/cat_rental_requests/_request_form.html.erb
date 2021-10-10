@@ -1,17 +1,24 @@
+
 <% method = '' %>
 <% if action == :new %>
   <% action = cat_rental_requests_url   %>
+  <% back_option = {'url': cats_url, 'text':  'all cats...'} %>
+  <% spec_cat = nil %>
 <% else %>
-  <% action = cat_rental_request_url(rent_req) %>
+  <% spec_cat = rent_request.cat %>
+  <% action = cat_rental_request_url(rent_request) %>
   <% method = "<input type='hidden' name='_method' value='PATCH'>" %>
+  <% back_option = {'url': cat_url(spec_cat), 'text': 'cat...'} %>
 <% end %>
+<a href=<%= back_option[:url] %>>Back to <%= back_option[:text] %></a>
+<br>
 <form 
   action=<%= action %>
   style="display: flex; flex-direction: column;"
 >
   <%= method.html_safe %>
   <label for="cats_select">Choose cat</label>
-  <%= render 'cats_select', selected_cat: rent_req.cat %>
+  <%= render 'cats_select', selected_cat: spec_cat %>
   <br>
   <label for="start_date">Select start</label>
   <input type="date", name="rent_request[start_date]">

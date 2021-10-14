@@ -126,7 +126,7 @@ label {
   }
 
   .dropdown-content {
-    background-image: url("hamburger_menu.png");
+    background: url("hamburger_menu.png");
     background-repeat: no-repeat;
     background-size: 50px 50px;
     width: 50px;
@@ -144,9 +144,9 @@ label {
     cursor: pointer;
   }
 
-  nav ul li {
+  /* nav ul li {
     display: inline-block;
-  }
+  } */
 
   .hamburger-dropdown:hover ul {
     display: block;

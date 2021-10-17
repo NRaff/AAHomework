@@ -1,0 +1,24 @@
+<div
+  style="
+          display=flex; 
+          flex-direction: 
+          column; width: 75%;
+          justify-content: center;
+          align-content: center;"
+>
+  <h1>Sign In</h1>
+  <form 
+    action="<%= session_url %>" 
+    method="POST"
+    style="display: flex; flex-direction: column;"
+  >
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="email">Email</label>
+    <input name="user[email]" type="text" id="Email" value="<%= @user.email %>">
+    <label for="Password">Password</label>
+    <input name="user[password]" type="password" id="Password">
+    <input type="submit" value="Sign In">
+  </form>
+
+  <h2><a href=<% new_user_url %>>Or create an account </a></h2>
+</div>

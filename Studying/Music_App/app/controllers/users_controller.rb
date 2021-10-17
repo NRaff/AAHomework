@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:messages] = ["Successfully created an account!"]
+      login!(@user)
       redirect_to users_url # probably alter this redirect later
     else
       flash.now[:errors] = @user.errors.full_messages
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
   def destroy
     @user = get_user
     @user.destroy
-    flash[:messages] = ["Deleted #{@user.username}"]
+    flash[:messages] = ["Deleted #{@user.email}"]
     redirect_to users_url
   end
 
@@ -46,6 +47,14 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     render :index
+  end
+
+  def get_user
+    User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :password)
   end
 
 end

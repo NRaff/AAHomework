@@ -1,2 +1,22 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div
+  style="
+          display=flex; 
+          flex-direction: 
+          column; width: 75%;
+          justify-content: center;
+          align-content: center;"
+>
+  <h1>Create Account</h1>
+  <form 
+    action="<%= users_url %>" 
+    method="POST"
+    style="display: flex; flex-direction: column;"
+  >
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="email">Email</label>
+    <input name="user[email]" type="text" id="Email" value="<%= @user.email %>">
+    <label for="Password">Password</label>
+    <input name="user[password]" type="password" id="Password">
+    <input type="submit" value="Create Account">
+  </form>
+</div>

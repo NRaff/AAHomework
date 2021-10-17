@@ -1,0 +1,20 @@
+<div
+  style="
+          display=flex; 
+          flex-direction: 
+          column; width: 75%;
+          justify-content: center;
+          align-content: center;"
+>
+  <h1>Add a band</h1>
+  <form 
+    action="<%= bands_url %>" 
+    method="POST"
+    style="display: flex; flex-direction: column;"
+  >
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="Name">Name</label>
+    <input name="band[name]" type="text" id="Name" value="<%= @band.name %>">
+    <input type="submit" value="Create Band">
+  </form>
+</div>

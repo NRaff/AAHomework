@@ -1,0 +1,19 @@
+<h1><%= @band.name %>'s Albums</h1>
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Live?</th>
+  </thead>
+  <tbody>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.title %></td>
+        <td><%= album.year %></td>
+        <td><%= album.live? ? "Live" : "Studio" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

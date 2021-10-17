@@ -1,8 +1,48 @@
+<a href=<%= bands_url %>>Back to all bands...</a>
 <h1>Band: <%= @band.name %></h1>
-<form action=<%= band_url(@band) %> method="POST">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Band">
-</form>
-<a href="<%= new_band_album_url(@band) %>">+ New Album</a>
-<a href="<%= band_albums_url(@band) %>">All Albums</a>
+<nav
+  style="display:flex; justify-content: space-evenly;"
+>
+  <form action=<%= band_url(@band) %> method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Band">
+  </form>
+  <a href="<%= new_band_album_url(@band) %>">+ New Album</a>
+</nav>
+<h1><%= @band.name %>'s Albums</h1>
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Live?</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </thead>
+  <tbody>
+    <% @band.albums.each do |album| %>
+      <tr>
+        <td><%= album.title %></td>
+        <td><%= album.year %></td>
+        <td><%= album.live? ? "Live" : "Studio" %></td>
+        <td>
+          <form action=<%= edit_album_url(album) %> method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="GET">
+            <input type="submit" value="Edit">
+          </form>
+        </td>
+        <td>
+          <form action=<%= album_url(album) %> method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete">
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

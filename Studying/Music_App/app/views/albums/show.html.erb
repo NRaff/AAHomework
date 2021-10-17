@@ -1,2 +1,36 @@
-<h1>Albums#show</h1>
-<p>Find me in app/views/albums/show.html.erb</p>
+<a href=<%= band_url(@album.band_id) %>>Back to band...</a>
+<h1><%= @album.title %></h1>
+<h2>Tracks</h2>
+<a href="<%= new_album_track_url(@album) %>">+ New Track</a>
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Track Number</th>
+    <th>Bonus?</th>
+    <th>Show Lyrics</th>
+    <th>Edit Track</th>
+    <th>Delete Track</th>
+  </thead>
+  <tbody>
+    <% @album.tracks.each do |track| %>
+      <tr>
+        <td><%= track.title %></td>
+        <td><%= track.ord %></td>
+        <td><%= track.bonus? ? "Bonus" : "Regular" %></td>
+        <td>
+          <a href="<%= track_url(track) %>">View</a>
+        </td>
+        <td>
+          <a href="<%= edit_track_url(track) %>">Edit</a>
+        </td>
+        <td>
+          <form action="<%= track_url(track) %>" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete">
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

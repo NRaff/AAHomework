@@ -17,7 +17,7 @@ class AlbumsController < ApplicationController
     @album = get_album
     @band = @album.band
     if @album.update(album_params)
-      flash[:messages] = ["Successfully edited tha album: #{@album.title}"]
+      flash[:messages] = ["Successfully edited the album: #{@album.title}"]
       redirect_to band_url(@album.band.id)
     else
       flash.now[:errors] = @album.errors.full_messages

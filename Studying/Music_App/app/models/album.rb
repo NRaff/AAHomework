@@ -19,4 +19,8 @@ class Album < ApplicationRecord
     foreign_key: :band_id,
     class_name: :Band
 
+  has_many :tracks,
+    foreign_key: :album_id,
+    class_name: :Track
+
 end

@@ -16,6 +16,8 @@
     <th>Title</th>
     <th>Year</th>
     <th>Live?</th>
+    <th>Tracks</th>
+    <th>Add Track</th>
     <th>Edit</th>
     <th>Delete</th>
   </thead>
@@ -25,6 +27,20 @@
         <td><%= album.title %></td>
         <td><%= album.year %></td>
         <td><%= album.live? ? "Live" : "Studio" %></td>
+        <td>
+          <form action=<%= album_url(album) %> method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="GET">
+            <input type="submit" value="View">
+          </form>
+        </td>
+        <td>
+          <form action=<%= new_album_track_url(album) %> method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="GET">
+            <input type="submit" value="New Track">
+          </form>
+        </td>
         <td>
           <form action=<%= edit_album_url(album) %> method="POST">
             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -39,6 +55,7 @@
             <input type="submit" value="Delete">
           </form>
         </td>
+
       </tr>
     <% end %>
   </tbody>

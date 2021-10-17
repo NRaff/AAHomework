@@ -1,0 +1,37 @@
+<a href="<%= album_url(@track.album_id) %>">Back to album...</a>
+<h1>Edit Track</h1>
+<form 
+  action=<%= track_url(@track) %>
+  method="POST"
+  style="display:flex; flex-direction: column;"
+>
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label>Album
+    <select name="track[album_id]">
+      <% @albums.each do |album| %>
+        <option value="<%= album.id %>" <%= album.id == @track.album_id ? "selected" : "" %>> <%= album.title %> </option>
+      <% end %>
+    </select>
+  </label>
+  <label>Title
+    <input type="text" name="track[title]" value="<%= @track.title %>">
+  </label>
+  <label>Track Number
+    <input type="text" name="track[ord]"value="<%= @track.ord %>">
+  </label>
+  <label>Bonus?</label>
+    <div style="display: flex;">
+      <label for="Bonus">Bonus</label>
+      <input id="Bonus" type="radio" name="track[bonus?]" value="true" <%= @track.bonus? ? "checked" : ""%>>
+    </div>
+    <div style="display: flex;">
+      <label for="Regular">Regular</label>
+      <input id="Regular" type="radio" name="track[bonus?]" value="false" <%= @track.bonus? ? "" : "checked"%>>
+    </div>
+  <label>Lyrics
+    <textarea name="track[lyrics]" cols="30" rows="10"><%= @track.lyrics %></textarea>
+  </label>
+  <br>
+  <input type="submit" value="Update Track">
+</form>

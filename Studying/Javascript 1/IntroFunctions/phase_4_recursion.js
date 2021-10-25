@@ -67,4 +67,54 @@ function bSearch(arr, target) {
 };
 
 let sortedArr = [0,1,2,3,4,5,6];
-console.log(bSearch(sortedArr, 2));
+// console.log(bSearch(sortedArr, 2));
+
+function mergeSort(arr) {
+  if (arr.length === 1) {
+    return arr
+  }
+  let mid = Math.floor(arr.length / 2);
+  let left = arr.slice(0, mid);
+  let right = arr.slice(mid);
+  let leftMerged = mergeSort(left);
+  let rightMerged = mergeSort(right);
+  return merge(leftMerged, rightMerged);
+
+}
+
+function merge(left, right) {
+  let newArr = [];
+  while (left.length !== 0 && right.length !== 0) {
+    if (left[0] < right[0]) {
+      newArr.push(left.shift());
+    } else {
+      newArr.push(right.shift());
+    }
+  }
+
+  if (left.length === 0) {
+    newArr = newArr.concat(right);
+  } else {
+    newArr = newArr.concat(left);
+  }
+  return newArr;
+}
+
+// let arr = [1, 5, 3, 8, 2, 9, 7, 4, 6,20,12,14,30,33,29];
+// console.log(mergeSort(arr));
+
+let tempArr = [0, 1, 2, 3, 4, 5, 6];
+function subsets(arr) {
+  if (arr.length === 1) {
+    return arr
+  }
+  let first = arr[0];
+  let subArr = arr.slice(1);
+  let allSubs = [];
+  for (let i=0; i<=subArr.length; i++) {
+    allSubs.push([first].concat(subArr.slice(0,i)));
+  }
+  return allSubs.concat(subsets(subArr));
+}
+
+// console.log(subsets(tempArr));

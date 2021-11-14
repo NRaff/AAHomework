@@ -31,11 +31,18 @@ class TodoItem extends React.Component {
   }
 
   todoItem(){
+    let detailText = this.state.showDetail ? 'Hide Detail' : 'Show Detail'
     return (
       <div className='todoItem'>
         <h3>{this.props.todo.title}</h3>
-        <button onClick={this.toggleComplete}>{this.props.todo.done ? '✅ Done' : '🟡 Complete?'}</button>
-        <button onClick={this.toggleDetail}>Show Detail</button>
+        <button 
+          onClick={this.toggleComplete}
+          className='addTodoBtn'
+        >{this.props.todo.done ? '✅ Done' : '🟡 Complete?'}</button>
+        <button 
+          onClick={this.toggleDetail}
+          className='addTodoBtn'
+        >{detailText}</button>
       </div>
     )
   }
@@ -43,7 +50,7 @@ class TodoItem extends React.Component {
   render(){
     if (this.state.showDetail) {
       return (
-        <div>
+        <div className='todoDetailView'>
           {this.todoItem()}
           <TodoDetailViewContainer todo={this.state.todo} />
         </div>

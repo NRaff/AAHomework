@@ -26,7 +26,8 @@ class StepForm extends React.Component {
       id: new Date().getTime(),
       done: false,
       title: '',
-      body: ''
+      body: '',
+      todo_id: this.props.todo_id
     }
     let show = false;
     this.setState({step, show})

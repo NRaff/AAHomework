@@ -7,7 +7,14 @@ const StepList = (props) => {
     <div>
       <StepForm receiveStep={props.receiveStep} todo_id={props.todo_id} />
       {props.steps.map((step) => {
-        return <StepItem step={step} receiveStep={props.receiveStep} removeStep={props.removeStep} />
+        return (
+          <StepItem 
+            step={step} 
+            receiveStep={props.receiveStep} 
+            removeStep={props.removeStep} 
+            key={step.id}
+          />
+        )
       })}
     </div>
     

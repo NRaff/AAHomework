@@ -1,3 +1,4 @@
+import React from "react"
 
 class StepItem extends React.Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class StepItem extends React.Component {
   render() {
     return (
       <div>
-        <h3>{props.step.title}</h3>
-        <p>{props.step.body}</p>
+        <h3>{this.props.step.title}</h3>
+        <p>{this.props.step.body}</p>
         <button
           onClick={this.toggleComplete}
           className='addTodoBtn'

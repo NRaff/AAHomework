@@ -21,6 +21,7 @@ class TodoList extends React.Component {
               receiveTodo={this.props.receiveTodo}
               removeTodo={this.props.removeTodo}
               updateTodo={this.props.updateTodo}
+              deleteTodo={this.props.deleteTodo}
             />
           )
         })}

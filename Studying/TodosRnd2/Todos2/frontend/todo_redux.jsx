@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { receiveStep, receiveSteps, removeStep } from './actions/step_actions';
-import { createTodo, fetchTodos, receiveTodo, receiveTodos, removeTodo } from './actions/todo_actions';
+import { createTodo, deleteTodo, fetchTodos, receiveTodo, receiveTodos, removeTodo } from './actions/todo_actions';
 import Root from './components/root';
 import configureStore from './store/store';
 
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.removeStep = removeStep;
   window.fetchTodos = fetchTodos;
   window.createTodo = createTodo;
+  window.deleteTodo = deleteTodo;
   const testFunc = () => {
     console.log('this is a test func')
   }

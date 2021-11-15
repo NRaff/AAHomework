@@ -15,7 +15,7 @@ class TodoItem extends React.Component {
   }
 
   handleDelete(){
-    this.props.removeTodo(this.state)
+    this.props.deleteTodo(this.state)
   }
 
   toggleComplete(){

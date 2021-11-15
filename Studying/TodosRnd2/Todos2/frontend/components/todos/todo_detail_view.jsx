@@ -5,7 +5,7 @@ const TodoDetailView = (props) => (
   <div>
     <h3>{props.todo.body}</h3>
     <button 
-      onClick={() => props.removeTodo(props.todo)}
+      onClick={() => props.deleteTodo(props.todo)}
       className='addTodoBtn'
     >❌ Delete</button>
     <div className='stepList'>
